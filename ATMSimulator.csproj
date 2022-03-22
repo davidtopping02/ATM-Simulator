@@ -68,6 +68,9 @@
     <EmbeddedResource Include="Forms\ATMForm.resx">
       <DependentUpon>ATMForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BankNetworkForm.resx">
+      <DependentUpon>BankNetworkForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

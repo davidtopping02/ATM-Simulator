@@ -8,3 +8,5 @@ C:\Users\kai\Source\Repos\davidtopping02\Y2ATMSimulator\bin\Debug\ATMSimulator.p
 C:\Users\kai\Source\Repos\davidtopping02\Y2ATMSimulator\obj\Debug\ATMSimulator.exe
 C:\Users\kai\Source\Repos\davidtopping02\Y2ATMSimulator\obj\Debug\ATMSimulator.pdb
 C:\Users\kai\source\repos\davidtopping02\Y2ATMSimulator\obj\Debug\ATMSimulator.Forms.ATMForm.resources
+C:\Users\kai\Source\Repos\davidtopping02\Y2ATMSimulator\obj\Debug\ATMSimulator.csproj.SuggestedBindingRedirects.cache
+C:\Users\kai\Source\Repos\davidtopping02\Y2ATMSimulator\obj\Debug\ATMSimulator.Forms.BankNetworkForm.resources
