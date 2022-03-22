@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ATMSimulator
+namespace ATMSimulator.Forms
 {
-    public partial class Form1 : Form
+    public partial class BankNetworkForm : Form
     {
-        public Form1()
+        public BankNetworkForm()
         {
             InitializeComponent();
         }
