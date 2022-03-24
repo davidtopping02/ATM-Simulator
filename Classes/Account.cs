@@ -62,21 +62,23 @@ namespace ATMSimulator.Classes
         }
 
 
-        /**
-        * Withdraws the amount using semaphores
-        */
+        /*
+         * Withdraws the amount using semaphores
+         */
         public void WithdrawAmount(double amount, int delay, string atm)
         {
+            // error handling for invalid amounts
             if (amount == 0)
             {
                 throw new InvalidOperationException("Withdrawal amount cannot be zero.");
             }
-            else if(this._balance < amount) 
+            else if (this._balance < amount)
             {
                 throw new InvalidOperationException("Insufficient funds");
             }
             else
             {
+                //withdraw cash...
                 _parent.PostLogMessage("[" + atm + "] Waiting for Balance access...");
                 if (_balanceSemaphore.WaitOne(15000))
                 {
@@ -91,6 +93,7 @@ namespace ATMSimulator.Classes
                     _parent.PostLogMessage("[" + atm + "] Balance transaction completed...");
                     _balanceSemaphore.Release(1);
                     _parent.PostLogMessage("[" + atm + "] SEMAPHORE RELEASED...");
+                    _parent.PostLogMessage("[" + atm + "] £" + amount + " withdrawn from account: " + _number);
                 }
                 else
                 {
@@ -101,17 +104,23 @@ namespace ATMSimulator.Classes
             }
         }
 
-        public void WithdrawAmountUnsafe(double amount, int delay, string atm) 
+        /*
+         * Withdraws cash from an account (no semaphore)
+         */
+        public void WithdrawAmountUnsafe(double amount, int delay, string atm)
         {
+            // error handling for invalid amounts
             if (amount == 0)
             {
                 throw new InvalidOperationException("Withdrawal amount cannot be zero.");
             }
-            else if(this._balance < amount){
+            else if (this._balance < amount)
+            {
                 throw new InvalidOperationException("Insufficient funds");
             }
             else
             {
+                // withdraw cash...
                 _parent.PostLogMessage("[" + atm + "] Unsafe Balance access...");
                 double tempBalance = _balance;
                 tempBalance -= amount;
@@ -119,6 +128,7 @@ namespace ATMSimulator.Classes
                 wait(delay);
                 _balance = tempBalance;
                 _parent.PostLogMessage("[" + atm + "] Balance transaction complete");
+                _parent.PostLogMessage("[" + atm + "] £" + amount + " withdrawn from account: " + _number);
             }
         }
 
@@ -134,8 +144,11 @@ namespace ATMSimulator.Classes
             else
             {
                 _parent.PostLogMessage("[" + atm + "] Waiting for Balance access...");
+
+                // wait for semaphore to becomee available 
                 if (_balanceSemaphore.WaitOne(15000))
                 {
+                    // deposit cash...
                     _parent.PostLogMessage("[" + atm + "] SEMAPHORE ACQUIRED...");
                     double tempBalance = _balance;
                     tempBalance += amount;
@@ -146,6 +159,7 @@ namespace ATMSimulator.Classes
                     _parent.PostLogMessage("[" + atm + "] Balance transaction completed...");
                     _balanceSemaphore.Release(1);
                     _parent.PostLogMessage("[" + atm + "] SEMAPHORE RELEASED...");
+                    _parent.PostLogMessage("[" + atm + "] £" + amount + " deposited into account: " + _number);
                 }
                 else
                 {
@@ -156,6 +170,9 @@ namespace ATMSimulator.Classes
             }
         }
 
+        /*
+         * Deposit amount (no semaphores)
+         */
         public void DepositAmountUnsafe(double amount, int delay, string atm)
         {
             if (amount == 0)
@@ -164,6 +181,7 @@ namespace ATMSimulator.Classes
             }
             else
             {
+                // deposit cash...
                 _parent.PostLogMessage("[" + atm + "] Unsafe Balance access...");
                 double tempBalance = _balance;
                 tempBalance += amount;
@@ -171,6 +189,8 @@ namespace ATMSimulator.Classes
                 wait(delay);
                 _balance = tempBalance;
                 _parent.PostLogMessage("[" + atm + "] Balance transaction complete");
+
+                _parent.PostLogMessage("[" + atm + "] £" + amount + " deposited into account: " + _number);
             }
         }
 
@@ -179,12 +199,15 @@ namespace ATMSimulator.Classes
          */
         public void UpdatePin(string newPin, int delay, string atm)
         {
+            // error handling
             if (newPin == _pin)
             {
                 throw new InvalidOperationException("New PIN must be different from old PIN.");
             }
             else
             {
+
+                // change pin
                 _parent.PostLogMessage("[" + atm + "] Waiting for account PIN access...");
                 if (_pinSemaphore.WaitOne(15000))
                 {
@@ -198,6 +221,7 @@ namespace ATMSimulator.Classes
                     _parent.PostLogMessage("[" + atm + "] PIN transaction completed...");
                     _pinSemaphore.Release(1);
                     _parent.PostLogMessage("[" + atm + "] SEMAPHORE RELEASED...");
+                    _parent.PostLogMessage("[" + atm + "] " + _number + " pin changed to: " + newPin);
                 }
                 else
                 {
@@ -206,12 +230,11 @@ namespace ATMSimulator.Classes
                     throw new TimeoutException("[" + atm + "] PIN update timed out. The PIN has not been changed.");
                 }
             }
-
         }
 
+
         /*
-         * Updates the pin for the bank account in an unsafe way
-         * (not using semaphores)
+         * Updates the pin for the bank account (no semaphores)
          */
         public void UpdatePinUnsafe(string newPin, int delay, string atm)
         {
@@ -226,6 +249,7 @@ namespace ATMSimulator.Classes
                 wait(delay);
                 _parent.PostLogMessage("[" + atm + "] PIN transaction completed...");
                 _pin = tempPin;
+                _parent.PostLogMessage("[" + atm + "] " + _number + " pin changed to: " + newPin);
             }
 
             //else false is returned
@@ -233,21 +257,6 @@ namespace ATMSimulator.Classes
             {
                 throw new InvalidOperationException("New PIN must be different from old PIN.");
             }
-        }
-
-        public Boolean IsLocked()
-        {
-            return locked;
-        }
-
-        public void LockAccount()
-        {
-            locked = true;
-        }
-
-        public void UnlockAccount()
-        {
-            locked = false;
         }
 
         // https://stackoverflow.com/questions/10458118/wait-one-second-in-running-program
@@ -272,6 +281,23 @@ namespace ATMSimulator.Classes
             {
                 Application.DoEvents();
             }
+        }
+
+        //_____Helper functions for locked account_____
+
+        public Boolean IsLocked()
+        {
+            return locked;
+        }
+
+        public void LockAccount()
+        {
+            locked = true;
+        }
+
+        public void UnlockAccount()
+        {
+            locked = false;
         }
     }
 }

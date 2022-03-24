@@ -29,6 +29,7 @@ namespace ATMSimulator.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ATMForm));
             this.btnKeypad1 = new ATMSimulator.Classes.ValueButton();
             this.btnKeypad2 = new ATMSimulator.Classes.ValueButton();
             this.btnKeypad3 = new ATMSimulator.Classes.ValueButton();
@@ -406,6 +407,7 @@ namespace ATMSimulator.Forms
             this.Controls.Add(this.btnKeypad2);
             this.Controls.Add(this.btnKeypad1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "ATMForm";
             this.Text = "ATMForm";
