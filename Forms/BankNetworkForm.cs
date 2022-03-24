@@ -30,18 +30,29 @@ namespace ATMSimulator.Forms
         {
             _atmCounter++;
             bool semaphores = ckbSemaphores.Checked;
-            int delay = Int32.Parse(txbDelay.Text);
 
-            Thread newATMThread = new Thread(create);
-            newATMThread.SetApartmentState(ApartmentState.STA);
-            newATMThread.Start();
-
-            PostLogMessage("[ATM " + _atmCounter + "] created with semaphores and " + delay + "s delay");
-
-            void create()
+            try
             {
-                ATMForm newATM = new ATMForm(dict, semaphores, delay, "ATM " + _atmCounter);
-                Application.Run(newATM);
+                int delay = Int32.Parse(txbDelay.Text);
+
+                Thread newATMThread = new Thread(create);
+                newATMThread.SetApartmentState(ApartmentState.STA);
+                newATMThread.IsBackground = true;
+                newATMThread.Start();
+
+                PostLogMessage("[NETWORK] ATM " + _atmCounter + " created with semaphores and " + delay + "s delay");
+
+                void create()
+                {
+                    ATMForm newATM = new ATMForm(dict, semaphores, delay, "ATM " + _atmCounter);
+                    Application.Run(newATM);
+                }
+            }
+            catch
+            {
+                //delay is not an int
+                MessageBox.Show("Invalid delay", "Error");
+                txbDelay.Text = "";
             }
         }
 
@@ -51,6 +62,29 @@ namespace ATMSimulator.Forms
             { txbLogWindow.Invoke(new Action<String>(PostLogMessage), new object[] { message }); }
             else
             { txbLogWindow.Text = txbLogWindow.Text + message + Environment.NewLine; }
+        }
+
+        /**
+        * Method to Create New Account
+        **/ 
+        public void createNewAccount() {
+            
+            //Try creating an account
+            // try {
+
+                    //if (txbAccountNumber.Text)
+            // //    
+            //Account a4 = new Account(txbAccountNumber.Text, txbPin.Text, txbBalance.Text, txbName.Text, this);
+            // }
+
+            // catch {
+                //delay is not an int
+                // MessageBox.Show("Invalid delay", "Error");
+                // txbDelay.Text = "";
+
+                //check acc pin (is four) and double bal are numeric
+
+            // }
         }
     }
 }

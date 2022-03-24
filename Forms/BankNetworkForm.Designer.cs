@@ -36,14 +36,26 @@ namespace ATMSimulator.Forms
             this.gpbATMSettings = new System.Windows.Forms.GroupBox();
             this.btnCreateATM = new System.Windows.Forms.Button();
             this.lblLogWindow = new System.Windows.Forms.Label();
+            this.gpbAddAccount = new System.Windows.Forms.GroupBox();
+            this.btnAddAccount = new System.Windows.Forms.Button();
+            this.lblName = new System.Windows.Forms.Label();
+            this.txbName = new System.Windows.Forms.TextBox();
+            this.txbAccountNumber = new System.Windows.Forms.TextBox();
+            this.lblAccountNumber = new System.Windows.Forms.Label();
+            this.txbPin = new System.Windows.Forms.TextBox();
+            this.lblPin = new System.Windows.Forms.Label();
+            this.txbBalance = new System.Windows.Forms.TextBox();
+            this.lblBalance = new System.Windows.Forms.Label();
             this.gpbATMSettings.SuspendLayout();
+            this.gpbAddAccount.SuspendLayout();
             this.SuspendLayout();
             // 
             // txbLogWindow
             // 
-            this.txbLogWindow.Location = new System.Drawing.Point(12, 143);
+            this.txbLogWindow.Location = new System.Drawing.Point(13, 197);
             this.txbLogWindow.Multiline = true;
             this.txbLogWindow.Name = "txbLogWindow";
+            this.txbLogWindow.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txbLogWindow.Size = new System.Drawing.Size(335, 445);
             this.txbLogWindow.TabIndex = 0;
             // 
@@ -100,17 +112,109 @@ namespace ATMSimulator.Forms
             // lblLogWindow
             // 
             this.lblLogWindow.AutoSize = true;
-            this.lblLogWindow.Location = new System.Drawing.Point(14, 127);
+            this.lblLogWindow.Location = new System.Drawing.Point(15, 181);
             this.lblLogWindow.Name = "lblLogWindow";
             this.lblLogWindow.Size = new System.Drawing.Size(153, 13);
             this.lblLogWindow.TabIndex = 5;
             this.lblLogWindow.Text = "Bank Network Logging System";
             // 
+            // gpbAddAccount
+            // 
+            this.gpbAddAccount.Controls.Add(this.txbBalance);
+            this.gpbAddAccount.Controls.Add(this.lblBalance);
+            this.gpbAddAccount.Controls.Add(this.txbPin);
+            this.gpbAddAccount.Controls.Add(this.lblPin);
+            this.gpbAddAccount.Controls.Add(this.txbAccountNumber);
+            this.gpbAddAccount.Controls.Add(this.lblAccountNumber);
+            this.gpbAddAccount.Controls.Add(this.txbName);
+            this.gpbAddAccount.Controls.Add(this.lblName);
+            this.gpbAddAccount.Controls.Add(this.btnAddAccount);
+            this.gpbAddAccount.Location = new System.Drawing.Point(166, 12);
+            this.gpbAddAccount.Name = "gpbAddAccount";
+            this.gpbAddAccount.Size = new System.Drawing.Size(182, 155);
+            this.gpbAddAccount.TabIndex = 6;
+            this.gpbAddAccount.TabStop = false;
+            this.gpbAddAccount.Text = "Open new account";
+            // 
+            // btnAddAccount
+            // 
+            this.btnAddAccount.Location = new System.Drawing.Point(6, 124);
+            this.btnAddAccount.Name = "btnAddAccount";
+            this.btnAddAccount.Size = new System.Drawing.Size(170, 23);
+            this.btnAddAccount.TabIndex = 0;
+            this.btnAddAccount.Text = "Open Account";
+            this.btnAddAccount.UseVisualStyleBackColor = true;
+            // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(6, 22);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(35, 13);
+            this.lblName.TabIndex = 1;
+            this.lblName.Text = "Name";
+            // 
+            // txbName
+            // 
+            this.txbName.Location = new System.Drawing.Point(76, 19);
+            this.txbName.Name = "txbName";
+            this.txbName.Size = new System.Drawing.Size(100, 20);
+            this.txbName.TabIndex = 2;
+            // 
+            // txbAccountNumber
+            // 
+            this.txbAccountNumber.Location = new System.Drawing.Point(76, 46);
+            this.txbAccountNumber.Name = "txbAccountNumber";
+            this.txbAccountNumber.Size = new System.Drawing.Size(100, 20);
+            this.txbAccountNumber.TabIndex = 4;
+            // 
+            // lblAccountNumber
+            // 
+            this.lblAccountNumber.AutoSize = true;
+            this.lblAccountNumber.Location = new System.Drawing.Point(6, 49);
+            this.lblAccountNumber.Name = "lblAccountNumber";
+            this.lblAccountNumber.Size = new System.Drawing.Size(65, 13);
+            this.lblAccountNumber.TabIndex = 3;
+            this.lblAccountNumber.Text = "Account no.";
+            // 
+            // txbPin
+            // 
+            this.txbPin.Location = new System.Drawing.Point(76, 72);
+            this.txbPin.Name = "txbPin";
+            this.txbPin.Size = new System.Drawing.Size(100, 20);
+            this.txbPin.TabIndex = 6;
+            // 
+            // lblPin
+            // 
+            this.lblPin.AutoSize = true;
+            this.lblPin.Location = new System.Drawing.Point(6, 75);
+            this.lblPin.Name = "lblPin";
+            this.lblPin.Size = new System.Drawing.Size(25, 13);
+            this.lblPin.TabIndex = 5;
+            this.lblPin.Text = "PIN";
+            // 
+            // txbBalance
+            // 
+            this.txbBalance.Location = new System.Drawing.Point(76, 98);
+            this.txbBalance.Name = "txbBalance";
+            this.txbBalance.Size = new System.Drawing.Size(100, 20);
+            this.txbBalance.TabIndex = 8;
+            // 
+            // lblBalance
+            // 
+            this.lblBalance.AutoSize = true;
+            this.lblBalance.Location = new System.Drawing.Point(6, 101);
+            this.lblBalance.Name = "lblBalance";
+            this.lblBalance.Size = new System.Drawing.Size(66, 13);
+            this.lblBalance.TabIndex = 7;
+            this.lblBalance.Text = "Balance in £";
+            // 
             // BankNetworkForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(363, 600);
+            this.ClientSize = new System.Drawing.Size(363, 655);
+            this.Controls.Add(this.gpbAddAccount);
             this.Controls.Add(this.lblLogWindow);
             this.Controls.Add(this.gpbATMSettings);
             this.Controls.Add(this.txbLogWindow);
@@ -118,6 +222,8 @@ namespace ATMSimulator.Forms
             this.Text = "BankNetworkForm";
             this.gpbATMSettings.ResumeLayout(false);
             this.gpbATMSettings.PerformLayout();
+            this.gpbAddAccount.ResumeLayout(false);
+            this.gpbAddAccount.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -132,5 +238,15 @@ namespace ATMSimulator.Forms
         private System.Windows.Forms.GroupBox gpbATMSettings;
         private System.Windows.Forms.Button btnCreateATM;
         private System.Windows.Forms.Label lblLogWindow;
+        private System.Windows.Forms.GroupBox gpbAddAccount;
+        private System.Windows.Forms.TextBox txbBalance;
+        private System.Windows.Forms.Label lblBalance;
+        private System.Windows.Forms.TextBox txbPin;
+        private System.Windows.Forms.Label lblPin;
+        private System.Windows.Forms.TextBox txbAccountNumber;
+        private System.Windows.Forms.Label lblAccountNumber;
+        private System.Windows.Forms.TextBox txbName;
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.Button btnAddAccount;
     }
 }

@@ -77,17 +77,25 @@ namespace ATMSimulator.Classes
             }
             else
             {
+                _parent.PostLogMessage("[" + atm + "] Waiting for Balance access...");
                 if (_balanceSemaphore.WaitOne(15000))
                 {
+                    _parent.PostLogMessage("[" + atm + "] SEMAPHORE ACQUIRED...");
                     double tempBalance = _balance;
                     tempBalance -= amount;
+                    _parent.PostLogMessage("[" + atm + "] Current balance loaded...");
+
+                    _parent.PostLogMessage("[" + atm + "] Balance transaction started...");
                     wait(delay);
                     _balance = tempBalance;
+                    _parent.PostLogMessage("[" + atm + "] Balance transaction completed...");
                     _balanceSemaphore.Release(1);
+                    _parent.PostLogMessage("[" + atm + "] SEMAPHORE RELEASED...");
                 }
                 else
                 {
                     // Handle timeout here
+                    _parent.PostLogMessage("[" + atm + "] SEMAPHORE REQUEST TIMEOUT...");
                     throw new TimeoutException("Withdrawal timed out. The money has not been taking out of the account.");
                 }
             }
@@ -104,10 +112,13 @@ namespace ATMSimulator.Classes
             }
             else
             {
+                _parent.PostLogMessage("[" + atm + "] Unsafe Balance access...");
                 double tempBalance = _balance;
                 tempBalance -= amount;
+                _parent.PostLogMessage("[" + atm + "] Balance transaction started...");
                 wait(delay);
                 _balance = tempBalance;
+                _parent.PostLogMessage("[" + atm + "] Balance transaction complete");
             }
         }
 
@@ -122,19 +133,25 @@ namespace ATMSimulator.Classes
             }
             else
             {
+                _parent.PostLogMessage("[" + atm + "] Waiting for Balance access...");
                 if (_balanceSemaphore.WaitOne(15000))
                 {
-                    // simulating data race
+                    _parent.PostLogMessage("[" + atm + "] SEMAPHORE ACQUIRED...");
                     double tempBalance = _balance;
                     tempBalance += amount;
+                    _parent.PostLogMessage("[" + atm + "] Current balance loaded...");
+                    _parent.PostLogMessage("[" + atm + "] Balance transaction started...");
                     wait(delay);
                     _balance = tempBalance;
+                    _parent.PostLogMessage("[" + atm + "] Balance transaction completed...");
                     _balanceSemaphore.Release(1);
+                    _parent.PostLogMessage("[" + atm + "] SEMAPHORE RELEASED...");
                 }
                 else
                 {
                     // Handle timeout here
-                    throw new TimeoutException("Deposit timed out. The money has not been deposited into the account.");
+                    _parent.PostLogMessage("[" + atm + "] SEMAPHORE REQUEST TIMEOUT...");
+                    throw new TimeoutException("[" + atm + "] Deposit timed out. The money has not been deposited into the account.");
                 }
             }
         }
@@ -147,10 +164,13 @@ namespace ATMSimulator.Classes
             }
             else
             {
+                _parent.PostLogMessage("[" + atm + "] Unsafe Balance access...");
                 double tempBalance = _balance;
                 tempBalance += amount;
+                _parent.PostLogMessage("[" + atm + "] Balance transaction started...");
                 wait(delay);
                 _balance = tempBalance;
+                _parent.PostLogMessage("[" + atm + "] Balance transaction complete");
             }
         }
 
@@ -172,7 +192,7 @@ namespace ATMSimulator.Classes
                     string tempPin = _pin;
                     tempPin = newPin;
                     _parent.PostLogMessage("[" + atm + "] Current account PIN loaded...");
-                    _parent.PostLogMessage(atm + " PIN transaction started...");
+                    _parent.PostLogMessage("[" + atm + "] PIN transaction started...");
                     wait(delay);
                     _pin = tempPin;
                     _parent.PostLogMessage("[" + atm + "] PIN transaction completed...");
@@ -183,7 +203,7 @@ namespace ATMSimulator.Classes
                 {
                     // Handle timeout here
                     _parent.PostLogMessage("[" + atm + "] SEMAPHORE REQUEST TIMEOUT...");
-                    throw new TimeoutException("PIN update timed out. The PIN has not been changed.");
+                    throw new TimeoutException("[" + atm + "] PIN update timed out. The PIN has not been changed.");
                 }
             }
 
@@ -199,9 +219,12 @@ namespace ATMSimulator.Classes
             //this.pin is set to the new pin and true is returned
             if (_pin != newPin)
             {
+                _parent.PostLogMessage("[" + atm + "] Unsafe PIN access...");
                 string tempPin = _pin;
                 tempPin = newPin;
+                _parent.PostLogMessage("[" + atm + "] PIN transaction started...");
                 wait(delay);
+                _parent.PostLogMessage("[" + atm + "] PIN transaction completed...");
                 _pin = tempPin;
             }
 

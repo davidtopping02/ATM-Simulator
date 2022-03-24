@@ -31,6 +31,11 @@
     - custom amount
 
 
+# GpbAddAccount 
+##  txbName - name, obviously
+##  txbAccountNumber - accountNumber 
+## txbPin - pin number
+## txbBalance
 
 
 

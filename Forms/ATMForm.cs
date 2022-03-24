@@ -8,6 +8,7 @@ namespace ATMSimulator.Forms
 {
     public partial class ATMForm : Form
     {
+
         private string _stage;
         private string _accountNumber;
         private string _pinEntered;
@@ -296,7 +297,7 @@ namespace ATMSimulator.Forms
 
             if (_stage == "main_menu")
             {
-                setScreen("main menu here");
+                setScreen("<html><body style='height: 200px; background-color: #01b0f1; font-family: 'Courier New', Courier, monospace; color: white; font-weight: bolder; padding-top: 50%; padding-bottom: 50%;'><div style= 'height: 50%;'></div><div style='background-color: #01b0f1; color:black; text-align: center; position: relative; width: 100%'><div><div style='border-radius: 0.25rem;background-color: #ffffff; color:black; border-color:black; border-style: solid; text-align: center; width: 45%; float: left; padding-bottom: 5px; margin-bottom: 2px'>< View Balance</div><div style='border-radius: 0.25rem;background-color: white; color:black; border-color:black; border-style: solid; text-align: center; width: 45%; float: right;padding-bottom: 5px; margin-bottom: 2px'>Withdraw Cash > </div></div><div><div style='border-radius: 0.25rem;background-color: white; color:black; border-color:black; border-style: solid; text-align: center; width: 45%; float: left; padding-bottom: 5px; margin-bottom: 2px; margin-top: 4px;'>< Deposit Cash</div><div style='border-radius: 0.25rem;background-color: white; color:black; border-color:black; border-style: solid; text-align: center; width: 45%; float: right; padding-bottom: 5px; margin-bottom: 2px; margin-top: 4px;'>Change Pin ></div></div><div><div style='border-radius: 0.25rem;background-color: white; color:black; border-color:black; border-style: solid; text-align: center; width: 45%; float: left; margin-bottom: 2px; margin-top: 4px'>< Cancel</div></div></div></body></html>");
                 return;
             }
 
