@@ -1,0 +1,13 @@
+C:\Users\kai\Source\Repos\davidtopping02\Y2ATMSimulator\obj\Debug\ATMSimulator.csproj.AssemblyReference.cache
+C:\Users\kai\Source\Repos\davidtopping02\Y2ATMSimulator\obj\Debug\ATMSimulator.Properties.Resources.resources
+C:\Users\kai\Source\Repos\davidtopping02\Y2ATMSimulator\obj\Debug\ATMSimulator.csproj.GenerateResource.cache
+C:\Users\kai\Source\Repos\davidtopping02\Y2ATMSimulator\obj\Debug\ATMSimulator.csproj.CoreCompileInputs.cache
+C:\Users\kai\Source\Repos\davidtopping02\Y2ATMSimulator\bin\Debug\ATMSimulator.exe.config
+C:\Users\kai\Source\Repos\davidtopping02\Y2ATMSimulator\bin\Debug\ATMSimulator.exe
+C:\Users\kai\Source\Repos\davidtopping02\Y2ATMSimulator\bin\Debug\ATMSimulator.pdb
+C:\Users\kai\Source\Repos\davidtopping02\Y2ATMSimulator\obj\Debug\ATMSimulator.exe
+C:\Users\kai\Source\Repos\davidtopping02\Y2ATMSimulator\obj\Debug\ATMSimulator.pdb
+C:\Users\kai\source\repos\davidtopping02\Y2ATMSimulator\obj\Debug\ATMSimulator.Forms.ATMForm.resources
+C:\Users\kai\Source\Repos\davidtopping02\Y2ATMSimulator\obj\Debug\ATMSimulator.csproj.SuggestedBindingRedirects.cache
+C:\Users\kai\Source\Repos\davidtopping02\Y2ATMSimulator\obj\Debug\ATMSimulator.Forms.BankNetworkForm.resources
+C:\Users\kai\Source\Repos\davidtopping02\Y2ATMSimulator\obj\Debug\ATMSimulator.Forms.AccountsForm.resources
